@@ -31,7 +31,11 @@ public class SomeRoute implements Route {
                 for(Passenger passenger: train.getPassengers()) {
                     Actions actions = passenger.getActions();
                     if(actions != null)
-                        actions.completeActions(passenger);
+                        try {
+                            actions.completeActions(passenger);
+                        } catch (IllegalActionsTarget e) {
+                            System.out.println(e.getMessage());
+                        }
                 }
                 timeToSleepCheck();
                 train.stopAt(station);

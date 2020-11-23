@@ -23,11 +23,15 @@ public class ScuperfieldActions implements Actions{
                 tilt();
         }
 
-        public void tilt() throws UnableToFall {
+        public void tilt(){
             System.out.println(this + " tilts.");
             pitch++;
             if(pitch > 2)
-                fallOnPersonsHead();
+                try{
+                    fallOnPersonsHead();
+                } catch (UnableToFall e){
+                    System.out.println(e.getMessage());
+                }
             else if(pitch > 1)
                 spillOnPerson();
             else if(pitch == 1)
